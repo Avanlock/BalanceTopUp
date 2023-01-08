@@ -22,9 +22,14 @@ namespace BalanceTopUp.Controllers
             _httpClient = httpClient;
         }
         
+        /// <summary>
+        /// Метод для определения оператора, пополнения баланса и внесения записи в БД
+        /// </summary>
         [HttpPost]
         [Route("CratePayment")]
-        public async Task<ActionResult> CratePaymentAsync(PaymentRequest paymentRequest)
+        [ProducesResponseType(200)]
+        [ProducesResponseType(400)]
+        public async Task<ActionResult<PaymentResponse>> CratePaymentAsync([FromBody]PaymentRequest paymentRequest)
         {
             try
             {
